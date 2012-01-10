@@ -1,0 +1,63 @@
+---
+layout: post 
+title: Reading Data From a Spreadsheet with Roo
+---
+
+<h2>Reading Data From a Spreadsheet with Roo</h2>
+<p>Have you ever been given a spreadsheet full of data that you need to use in an application?  Were you super not excited about copying and pasting the data from each cell for 2 hours?  The roo gem can be your bff when you have to read data from a spreadsheet.  Feel free to download the sample files for this example.</p>
+<div class="download">
+  <a href="https://github.com/rsese/roo-example" class="std-btn download-btn">View Code on GitHub</a>
+</div>
+<h3>What's This Roo Business?</h3>
+<p>Roo is a ruby gem that gives you a simple interface for reading data from a spreadsheet in .ods, .xls, .xlsx, and Google Doc spreadsheet format (and writing data in the case of a Google Docs spreadsheet).  Cell data types are recognized, data can be output in YAML and CSV format, and formulas are recognized in .odt and Google doc spreadsheets.  Roo is available on <a href="http://roo.rubyforge.org/">RubyForge</a> and <a href="http://www.thopre.com">Thomas Preymesser</a> is the gem maintainer.  Note that if you come across the <a href="https://github.com/hmcgowan/roo">GitHub</a> repository page, that repository is no longer maintaind by Hugh McGowan as mentioned in this <a href="https://github.com/hmcgowan/roo/issues/10#issuecomment-2522827">issue comment</a>.</p>
+<h3>Using Roo</h3>
+<p>Using Roo is fairly straightforward.  First install the gem using:</p>
+<pre><code>gem install roo</code></pre>
+<p>Then, hopefully you can use the following example and the references section as a starting point for working with Roo.  For this example, we'll use a stripped down version of the <a href="http://www.alistapart.com/articles/survey2010">A List Apart 2010 Web Design Survey</a> data.  The <a href="http://aneventapart.com/alasurvey2010/add.html">raw data</a> is kindly made available for further analysis; we'll just use it as sample data for our example.  And instead of using the whole spreadsheet (which is relatively huge), we'll just use the first six columns and the first one hundred rows.</p>
+
+<p>The below example is super simple; it reads data from an Excel spreadsheet and writes the data to standard out.  Instead of printing data to standard out, you could of course do something more interesting like read data from a client-provided Excel spreadsheet, write the data out to YAML files, and use those files to populate HTML email templates built with <a href="http://nanoc.stoneship.org/">Nanoc</a> (i.e. what I used Roo for).</p>
+<pre><code>require 'roo'
+
+workbook = Excel.new('a-list-apart-web-design-survey-sample.xls')
+
+# Set the worksheet you want to work with as the default worksheet.  You could
+# also iterate over all the worksheets in the workbook.
+workbook.default_sheet = workbook.sheets[0]
+
+# Create a hash of the headers so we can access columns by name (assuming row
+# 1 contains the column headings).  This will also grab any data in hidden
+# columns.
+headers = Hash.new
+workbook.row(1).each_with_index {|header,i|
+headers[header] = i
+}
+
+# Iterate over the rows using the `first_row` and `last_row` methods.  Skip
+# the header row in the range.
+((workbook.first_row + 1)..workbook.last_row).each do |row|
+
+# Get the column data using the column heading.
+age = workbook.row(row)[headers['What is your age in years?']]
+gender = workbook.row(row)[headers['What is your gender?']]
+most_identify_with = workbook.row(row)[headers['With which of these groups do you most identify?']]
+global_region = workbook.row(row)[headers['In which global region are you located?']]
+country = workbook.row(row)[headers['In which country are you located?']]
+education = workbook.row(row)[headers['What is the highest level of education you have completed?']]
+academics_helpfulness = workbook.row(row)[headers['How much have your academic studies helped you in your web work?']]
+
+print "Row: #{age}, #{gender}, #{most_identify_with}, #{global_region}, #{country}, #{education}, #{academics_helpfulness}\n\n"
+
+end</code></pre>
+<p>We start by opening the spreadsheet and setting the default worksheet we want to work with using the <code>Excel.new</code> class method.  Then the <code>sheets</code> property gives us access to all the worksheets in the spreadsheet in an array.  The sample spreadsheet has only one worksheet, so we set the default worksheet to the first worksheet in the array using <code>sheets[0]</code>.</p>
+<p>Next we create a hash of the column position and the header names to make it somewhat easier to work with the data.  This hash will let us ask for data from the fields/columns in each row using the column headings from the first row.  We can then iterate over all the rows in the spreadsheet using <code>first_row</code> and <code>last_row</code> methods.  We iterate over the number of rows in the spreadsheet passing the row block variable to the <code>row</code> method, which returns an array of all the columns in the row.  We use the <code>headings</code> hash we created earlier to access the columns by the heading name, and finally, we print the data to standard out.</p>
+<h3>References and Further Reading</h3>
+<ul class="references">
+  <li><a href="http://roo.rubyforge.org/">Roo</a>.  Retrieved October 10, 2011.<br />The project home page on RubyForge.  There's a nice walkthrough of many of the methods and properties provided by Roo, and there is a similar <q>reading data from a spreadsheet and printing the data to standard out</q> example, though it's implemented in a slightly different way.  There is also a discussion about cell data types, formulas, and writing data to Google Doc spreadsheets.  The most detailed discussion on using Roo.</li>
+  <li><a href="http://groups.google.com/group/ruby-roo">ruby-roo | Google Groups</a>.  Retrieved November 13, 2011.<br />Google group for support using Roo.  There's a lot of a good information here, so if you're having trouble with Roo, you can browse/search the archive, or post your own question.  Preymesser, the gem author is active on the list.</li>
+  <li><a href="http://roo.rubyforge.org/rdoc/index.html">roo-1.2.3 Documentation</a>.  Retrieved November 10, 2011.<br />The Roo API documentation.  Check here for more detailed information on the methods and properites provided by Roo.</li>
+  <li>Pack, Mike.  <a href="http://mikepackdev.com/blog_posts/15-parsing-excel-files-on-heroku-with-roo">Parsing Excel files on Heroku with roo</a>.  August 2, 2011.  Retrieved November 13, 2011.<br />Discusses a workaround for using Roo in a Rails application on Heroku because Pack states that the file system on Heroku is not writeable by your application.  Pretty specific issue, but since Heroku has been gaining popularity, this reference might save someone some time if they run into this problem.</li>
+  <li><a href="http://stackoverflow.com/search?q=%2Broo+%2Bgem">Questions containing &#39;+roo +gem&#39; - StackOverflow</a>.  Retrieved November 15, 2011.<br />Search results page for questions (and answers) related to the Roo gem (you may want to play with the search terms if you have a particular issue).  Not a ton of results right now, but you can always ask a question if you sign up for a StackOverflow account.</li>
+  <li><a href="http://spreadsheet.rubyforge.org/">Documentation spreadsheet 0.6.5.9</a>.  Retrieved November 13, 2011.<br />Project home page for the spreadsheet gem, an alternate gem for working with Excel spreadsheets (support for Open Office and Google Doc spreadsheets is not yet available).</li>
+  <li>Mullet, David.  <a href="http://rubyonwindows.blogspot.com/">RUBY ON WINDOWS</a>.  Retrieved November 15, 2011.<br />David Mullet's blog on using Ruby on the Windows platform.  A lot of great code samples for doing various tasks with Microsof Word, Excel, Outlook, etc.  Has a short post on <a href="http://rubyonwindows.blogspot.com/2008/01/parsing-spreadsheets-with-roo-gem.html">using Roo to read Excel spreadsheets</a>, but also has <a href="http://rubyonwindows.blogspot.com/search/label/excel">a number of posts on using Win32OLE</a> to work with Excel.  Win32OLE comes with Ruby as of version 1.8, though it is not included if you're on Linux.</li>
+  <li>Sulc, David.  <a href="http://davidsulc.com/blog/2011/03/27/using-ruby-and-win32ole-to-manipulate-excel/">Using Ruby and Win32OLE to manipulate Excel</a>.  Retrieved November 10, 2011.<br />The first in a series of posts using Win32OLE to work with Excel documents.  Along with Mullet's blog, we can see that Win32OLE provides more funcationality than Roo, but the big drawback is that you have to be on Windows for it to work (though there are some options like Wine if you are on Linux).</li>
+</ul>
