@@ -45,8 +45,9 @@ pre {
 
 pre code {
   display: block;
-  padding: 15px;
+  line-height: 1.75;
   overflow: auto;
+  padding: 15px;
 }
 
 #container {

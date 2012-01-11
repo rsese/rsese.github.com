@@ -87,7 +87,12 @@ robert@ubuntu:~/projects/jekyll-quickstart$ mkdir {_layouts,_posts,_site}
 
 <p>Now that we have the minimal layout done, we can create our two layouts; one for the blog post index, and one for our blog posts.  Since we're mainly interested in Jekyll, we'll keep things simple.  Our index layout looks like this:</p>
 
-<pre><code>&lt;!DOCTYPE html&gt;
+<pre><code>---
+layout: default 
+title: Hello World Blog
+---
+
+&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
 &lt;title&gt;Hello World Blog&lt;/title&gt;
@@ -116,16 +121,16 @@ robert@ubuntu:~/projects/jekyll-quickstart$ mkdir {_layouts,_posts,_site}
 
 <p>So if you want to have a slightly different layout for your posts (e.g. you want your blog posts to have a sidebar), you would change your <code>post.html</code> layout.  And if you had a particular post that you wanted to layout differently than any other post, you can create another layout just for that post, and then you would connect the post to the layout in the YAML front matter.  Just to add a tiny bit of variety to our layouts, we'll add a bit of HTML to our <code>post.html</code> layout, which adds a link back to the blog index page at the end of each post.  Open <code>_layouts/post.html</code> and change the <code>&lt;div&gt;</code> with <code>id="content"</code> to look like this:</p>
 
-<pre><code>  .
+<pre><code>.
 .
 .
 &lt;div id=&quot;content&quot;&gt;
-&lt;section id=&quot;main&quot; class=&quot;group&quot;&gt;
-&#123;&#123; content&#125;&#125; 
-&lt;div&gt;
-  &lt;a href=&quot;/&quot;&gt;Back Home&lt;/a&gt;
-&lt;/div&gt;
-&lt;/section&gt;
+  &lt;section id=&quot;main&quot; class=&quot;group&quot;&gt;
+  &#123;&#123; content&#125;&#125; 
+  &lt;div&gt;
+    &lt;a href=&quot;/&quot;&gt;Back Home&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;/section&gt;
 &lt;/div&gt;
 .
 .
@@ -164,7 +169,12 @@ robert@ubuntu:~/projects/jekyll-quickstart$ mkdir {_layouts,_posts,_site}
 <h4>Writing Our First Post</h4>
 <p>We don't have any posts yet, so let's write one before we run Jekyll and check out our blog.  Remember that you can write your posts in HTML, Markdown, and Textile; our first post is just going to say "Hello World", so we'll just stick with HTML.  We'll date our post for January 1, 2012, so we'll name the file for our post <code>_posts/2012-01-01-hello-world.html</code>:</p>
 
-<pre><code>&lt;h1&gt;Hello World!&lt;/h1&gt;
+<pre><code>---
+layout: post 
+title: Hello World
+---
+
+&lt;h1&gt;Hello World!&lt;/h1&gt;
 &lt;p&gt;
 Bacon ipsum dolor sit amet pastrami ribeye turducken short loin
 biltong. Kielbasa t-bone ham hock short ribs, sausage ribeye prosciutto

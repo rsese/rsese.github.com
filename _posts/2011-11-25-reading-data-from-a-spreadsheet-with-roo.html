@@ -35,18 +35,16 @@ headers[header] = i
 # Iterate over the rows using the `first_row` and `last_row` methods.  Skip
 # the header row in the range.
 ((workbook.first_row + 1)..workbook.last_row).each do |row|
+  # Get the column data using the column heading.
+  age = workbook.row(row)[headers['What is your age in years?']]
+  gender = workbook.row(row)[headers['What is your gender?']]
+  most_identify_with = workbook.row(row)[headers['With which of these groups do you most identify?']]
+  global_region = workbook.row(row)[headers['In which global region are you located?']]
+  country = workbook.row(row)[headers['In which country are you located?']]
+  education = workbook.row(row)[headers['What is the highest level of education you have completed?']]
+  academics_helpfulness = workbook.row(row)[headers['How much have your academic studies helped you in your web work?']]
 
-# Get the column data using the column heading.
-age = workbook.row(row)[headers['What is your age in years?']]
-gender = workbook.row(row)[headers['What is your gender?']]
-most_identify_with = workbook.row(row)[headers['With which of these groups do you most identify?']]
-global_region = workbook.row(row)[headers['In which global region are you located?']]
-country = workbook.row(row)[headers['In which country are you located?']]
-education = workbook.row(row)[headers['What is the highest level of education you have completed?']]
-academics_helpfulness = workbook.row(row)[headers['How much have your academic studies helped you in your web work?']]
-
-print "Row: #{age}, #{gender}, #{most_identify_with}, #{global_region}, #{country}, #{education}, #{academics_helpfulness}\n\n"
-
+  print "Row: #{age}, #{gender}, #{most_identify_with}, #{global_region}, #{country}, #{education}, #{academics_helpfulness}\n\n"
 end</code></pre>
 <p>We start by opening the spreadsheet and setting the default worksheet we want to work with using the <code>Excel.new</code> class method.  Then the <code>sheets</code> property gives us access to all the worksheets in the spreadsheet in an array.  The sample spreadsheet has only one worksheet, so we set the default worksheet to the first worksheet in the array using <code>sheets[0]</code>.</p>
 <p>Next we create a hash of the column position and the header names to make it somewhat easier to work with the data.  This hash will let us ask for data from the fields/columns in each row using the column headings from the first row.  We can then iterate over all the rows in the spreadsheet using <code>first_row</code> and <code>last_row</code> methods.  We iterate over the number of rows in the spreadsheet passing the row block variable to the <code>row</code> method, which returns an array of all the columns in the row.  We use the <code>headings</code> hash we created earlier to access the columns by the heading name, and finally, we print the data to standard out.</p>
