@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>: Hella Robots</title>
+    <link rel="stylesheet" media="screen" href="/assets/css/master.css"/>
+
+    <!-- enable HTML5 elements in IE7+8 -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-25803931-1']);
+      _gaq.push(['_setDomainName', 'hellarobots.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body id="home">
+    <div id="container"> 
+      <header class="group">
+        <div class="header-inner">
+          <h1 class="logo"><a href="/">Hella Robots.</a></h1>
+          <nav class="main-nav">
+            <ul>
+              <li><a href="/">home</a></li>
+              <li><a href="/projects.html">projects</a></li>
+              <li><a href="/blog.html">blog</a></li>
+              <li><a href="/#about">about</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <div id="content">
+        <section id="main" class="group">
+          <div class="span16 first">
+            <h2>Up and Running on PHPFog with CodeIgniter</h2>
+<p>If you're a web developer, chances are you've heard of or used <a href="http://rubyonrails.org/">Ruby on Rails</a> to develop a web application. As a Ruby programmer, there are other options like <a href="http://www.sinatrarb.com/">Sinatra</a>, but Rails is the dominant Ruby framework today (by at least <a href="http://www.bryceboe.com/2011/02/21/using-stackoverflows-api-to-find-the-top-web-frameworks/">one measure</a>). PHP on the other hand has a number of <a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC</a> frameworks that you can experiment with. <a href="http://cakephp.org/">CakePHP</a>, <a href="http://www.zend.com/en/">Zend</a>, and <a href="http://codeigniter.com/">CodeIgniter</a> are just a few that come to mind; <a href="http://fuelphp.com/">FuelPHP</a> is a bit younger, but looks pretty interesting too.</p>
+<p>I haven't had a chance to work with these PHP frameworks much aside from skimming their introductory tutorials, so I thought it might be helpful to get my hands slightly dirty with CodeIgniter in <a href="http://xkcd.com/908/">THE CLOUD</a>.</p>
+<p>We'll be using <a href="http://git-scm.com/">git</a> to track our source code, and <a href="https://phpfog.com/">PHPFog</a> to deploy the application.  You know what git is, but in case you haven't heard of PHPFog, it's another Platform as a Serivce (think <a href="http://www.heroku.com">Heroku</a>) with an easy to use web control panel for configuring and deploying your PHP-based web applications.</p>
+
+<h3>Setup</h3>
+<p>For simplicity's sake, we'll assume in this article that you have access to a Unix-y command line interface (think <a href="http://www.cygwin.com/">Cygwin</a> or the <a href="http://code.google.com/p/msysgit/">Git Bash shell</a> if you're on Windows).  My setup for this article is Windows 7 64-bit Home Premium, <a href="http://www.wampserver.com">WAMP Server 2.2A</a>, and Git Bash shell 1.7.7.1 mostly because I'm on Windows and haven't had a chance to install Cygwin or <a href="">VMware Player</a> yet.</p>
+
+<h3>PHPFog</h3>
+<p>Normally, we might start by grabbing the latest CodeIgniter package, unzipping it, adding the files to our local development server, and checking that we can access the default <q>Welcome to CodeIgniter</q> page.  But since we'll be using PHPFog to deploy our application, we'll start by getting our PHPfog setup prepared. PHPFog lets you deploy 3 free application to the Shared Cloud, which is great for development.</p>
+<p>After <a href="https://phpfog.com/users/new">registering</a> for an account, <a href="http://docs.phpfog.com/indxe.php/features/article/generating_a_ssh_key"> create your SSH keys</a> if you don't already have a key pair you want to use.  Then in your My Account dashboard, click on the <q>SSH Keys</q> tab, fill in your public key details (or click on the <q>Add another SSH Key</q> button if you're adding another key), and then click on <q>Save SSH Key</q>.</p>
+
+<div class="figure">
+  <img src="/assets/images/2011/12/ssh-keys-screenshot-medium.png" />
+</div>
+
+<p>With your SSH keys all setup, click on the <q>Clouds</q> tabs in your dashboard and launch a new application in the Shared Cloud. Since we're creating a CodeIgniter application we could choose the CodeIgniter option in the Frameworks section, but we can also create a Custom App and then just add all the CodeIgniter files ourselves.  Both options are really straightforward, but using the Custom App option does allow us to use the latest version of CodeIgniter.</p>
+<p>The PHPFog documentation actually gives us a nice walkthrough for <a href="http://docs.phpfog.com/index.php/features/article/getting_started_custom_application">setting up a custom application</a>, which is basically what we're going to do at first before adding the CodeIgniter framework files.  The instructions are largely the same, so we'll try not to repeat too much of the same information.  Start by clicking on the <q>Custom App</q> button in the Frameworks section.</p>
+
+<div class="figure">
+  <img src="/assets/images/2011/12/custom-app-screenshot-medium.png" />
+</div>
+
+<p>Next, we have to enter in our application details, which includes a MySQL password (we can set this now for future use), and our domain name.  For testing, using a .phpfogapp.com domain is fine, but you can use your own domain name if you want with more configuration (and assuming you own the domain name you want to use).  We'll set our MySQL password and then use the the URL hello-ci.phpfogapp.com for our application and click <q>Create App</q>. hello-ci.phpfogapp.com will of course be taken (unless I delete the application), so fill in your own domain name.</p>
+
+<div class="figure">
+  <img src="/assets/images/2011/12/application-details-screenshot-medium.png" />
+</div>
+
+<p>You'll be re-directed to your App Console where you'll see the status of your application move from Starting to Running if there are no problems.</p>
+
+<div class="figure">
+  <img src="/assets/images/2011/12/app-console-screenshot-medium.png" />
+</div>
+
+<p>If you click on the <q>View Live Site</q> button, you'll see "Hello World" in your browser. Your bare Custom App is now running on the PHPFog Shared Cloud.</p>
+<p>Now click on the <q>Source Code</q> tab in the sidebar, you'll see a git command for cloning the repository for your application. PHPFog creates this repository for your application, and we'll work with this repository by adding the CodeIgniter Framework files and pushing these changes to PHPFog remote repository.  To use this repository, you'll need to setup and use git on your local machine.</p>
+
+<h3>Git</h3>
+<p>Now that we have our PHPFog application setup, we need to use git to grab the source code, add the CodeIgniter framework files, and the push the changes back to the remote repository. There's a ton of great information on using git, so to keep this article relatively short, we'll assume you're at least familiar with the basic commands.  See this helpful <a href="http://help.github.com/win-set-up-git/">article</a> from the GitHub folks on installing and using git.  They have instructions on installing git on Windows, Mac, and Linux, and basic command usage, so you should be up and running in no time.</p>
+
+<p>With git installed, we can now clone the PHPFog remote repository.  First change directories to the root directory where you'll be working on this application.  Since I'm working on Windows with WAMP, in the Git Bash client, I changed directories to the WAMP applications directory.</p>
+
+<pre><code>cd /c/wamp/apps</code></pre>
+
+<p>Now if our SSH keys are setup correctly, we can clone the remote PHPFog repository.  Click on the <q>Source Code</q> tab in sidebar and copy the git clone command and paste the command shown for your application</p>
+
+<div class="figure">
+  <img src="/assets/images/2011/12/source-code-screenshot-medium.png" />
+</div>
+
+<pre><code>git clone git@git01.phpfog.com:hello-ci.phpfogapp.com</code></pre>
+
+<p>Replace <q>hello-ci</q> with the name of your application.  This creates the following directory on my machine:</p>
+
+<pre><code>/c/wamp/apps/hello-ci.phpfogapp.com</code></pre>
+
+<p>The only source file in this directory should be an index.php file that prints out "Hello World" (the default file you get for Custom Apps in PHPFog).</p>
+
+<p>At this point, if you are developing locally on your own machine, to make sure things are in place and setup correctly, we would need a local web server setup with PHP (and MySQL if you're going to use a database backend at some point).  These days, regardless of what platform you're on, setting up Apache, PHP, and MySQL isn't super-difficult, and there's definitely a <a href="#lamp-setup">a lot of information</a> you can find on the Internet for your platform.  Developing on your local machine makes it easier to see how code changes affect your application; otherwise you would have to commit and push changes to your remote PHPFog repository before your changes take effect.</p>
+
+<p>Since I happen to be on a Windows machine running WAMP while writing this article, I added an alias for hello-ci in WAMP and then opened this URL in my browser:</p>
+
+<pre><code>http://localhost/hello-ci/</code></pre>
+
+<p>The URL you visit will differ depending on how you setup your local environment.  You should see the same "Hello World" output in your browser.</p>
+
+<p>The next step is to add the CodeIgniter framework files to the repository and push the code to the remote PHPFog repository.  Keep in mind, as mentioned earlier, if you choose the CodeIgniter option when creating the application instead of the Custom App option, you would be done already and could skip the next section.  Using the Custom App option lets us get our hands slightly dirty and we can use the latest version of the CodeIgniter framework which might be important in some cases.</p>
+
+<h3>CodeIgniter</h3>
+<p>You can download the CodeIgniter framework from the CodeIgniter website - the current version as of this writing is 2.1.0. The CodeIgniter source is also currently hosted on <a href="https://github.com/EllisLab/CodeIgniter">GitHub</a>. Either way, you'll end up with a .zip file with the CodeIgniter framework.  In your application directory, unzip the CodeIgniter zip file:</p>
+
+<pre><code>unzip CodeIgniter_2.1.0.zip</code></pre>
+
+<p>You'll end up with a directory called CodeIgniter_2.1.0.  Move all the files in the CodeIgniter_2.1.0 subdirectory up one directory to your application root, and then delete the now empty directory.</p>
+
+<pre><code>mv CodeIgniter_2.1.0/* .
+rmdir CodeIgniter_2.1.0</code></pre>
+
+<p>The only file that gets overwritten is the "Hello World" index.php file which is replaced by CodeIgniter's router file. If everything went well, we can check for the default CodeIgniter index page at the local URL for your application:</p>
+
+<div class="figure">
+  <img src="/assets/images/2011/12/hello-ci-screenshot-medium.png" />
+</div>
+
+<p>If everything looks good, we can commit our changes and then push them to the remote PHPFog repository.  First, add our changes to the git staging area:</p>
+
+<pre><code>git add .</code></pre>
+
+<p>Then commit the changes:</p>
+
+<pre><code>git commit -m "Add CodeIgniter files."</code></pre>
+
+<p>Finally, push the changes to the PHPFog remote repository:</p>
+
+<pre><code>git push origin master</code></pre>
+
+<p>Now when we visit our PHPFog application URL, we should see the same default CodeIgniter page that we saw on our local machine:</p>
+
+<div class="figure">
+  <img src="/assets/images/2011/12/hello-ci-screenshot-medium.png" />
+</div>
+
+<h3>Next Steps</h3>
+
+<p>At this point, if you're also new to CodeIgniter, you can move on to the CodeIgniter <a href="http://codeigniter.com/user_guide/">User Guide</a>, which will get you familar with building web applications with the CodeIgniter framework.  There are also a number of <a href="http://speckyboy.com/2011/06/20/codeigniter-toolbox-essential-tutorials-and-resources/">online resources</a> on using CodeIgniter, though there aren't many up to date books to read unfortunately.</p>
+
+<p>If you're interested in exploring more of PHPFog, they have <a href="http://docs.phpfog.com/">documentation</a> and a <a href="http://community.phpfog.com/">community</a> forum that can help answer your questions.  The service is still evolving and new features continue to be added, so their <a href="http://blog.phpfog.com/">blog</a> is also a good way to keep up with new developments. If you want to deploy a production application, I would read their description of the <a href="http://phpfog.com/platform">platform</a> and their <a href="http://docs.phpfog.com/index.php/features/article/what_you_need_to_know">article on scaling</a> to see if PHPFog meets your needs.</p>
+
+<h3 id="references">References and Further Reading</h3>
+
+<h4>PHPFog</h4>
+<ul class="references">
+  <li><a href="http://www.phpfog.com">PHPFog</a>.  Retrieved December, 2011.<br />There doesn't seem to be too much 3rd party information on the web about using PHPFog, so see their <a href="http://docs.phpfog.com/">documentation</a>, <a href="http://community.phpfog.com/">community forum</a>, and <a href="http://blog.phpfog.com/">blog</a> for definitive information for now.</li>
+</ul>
+
+<h4>Git</h4>
+<p>The Git Community Book and Pro Git are two fairly comprehensive references on using git.</p>
+<ul class="references">
+  <li><a href="http://help.github.com/">Help.GitHub - Welcome</a>.  Retrieved December 2011.<br />Easy to follow tutorial on Git that starts with the basics and then moves on to more advanced usage.</li>
+  <li><a href="http://book.git-scm.com/">Git Community Book</a>.  Retrieved December 2011.</li>
+  <li>Chacon, Scott.  <a href="http://progit.org/book/">Pro Git</a>.  Retrieved December 2011.</li>
+</ul>
+
+<h4>CodeIgniter</h4>
+<ul class="references">
+  <li><a href="http://codeigniter.com/">CodeIgniter</a>.  Retrieved 2011.<br />Also see their <a href="http://codeigniter.com/user_guide/">User Guide</a>, <a href="http://codeigniter.com/forums/">forums</a>, and <a href="http://codeigniter.com/wiki/">wiki</a>.</li>
+  <li>Mokhov, Oleg.  <a href="http://speckyboy.com/2011/06/20/codeigniter-toolbox-essential-tutorials-and-resources/">CodeIgniter Toolbox - Essential Tutorials and Resources</a>.  Retrieved December 2011.<br />There currently aren't many tutorials for CodeIgniter 2, but most older CodeIgniter tutorials will work with a bit of modification (e.g. <a href="http://codeigniter.com/forums/viewthread/180347/#853909">new constructor calls</a>).  This article from Mokhov lists a number of good CodeIgniter references.</li>
+</ul>
+
+<h4>Background Information and Setup Help</h4>
+<h5 id="lamp-setup">LAMP Setup</h5>
+<p></p>
+<ul class="references">
+  <li><a href="http://www.apachefriends.org/en/xampp.html">XAMPP</a>.  Retrieved December 2011.<br />One click installer for Apache, PHP, and MySQL for OSX, Linux, and Windows.</li>
+  <li><a href="http://www.wampserver.com/">WampServer</a>.  Retrieved December 2011.<br />Windows only one click installer for Apache, PHP, and MySQL.</li>
+  <li><a href="www.mamp.info">MAMP</a>.  Retrieved December 2011.<br />Mac OSX one click installer for Apache, PHP, and MySQL.</li>
+  <li><a href="http://articles.slicehost.com/ubuntu-10">Ubuntu Lucid Slice setup from base Slice install to fully working, secure server.</a>.  Retrieved December 2011.<br />A series of articles from SliceHost on setting up basic server software on Ubuntu 10.x, which is still applicable to Ubuntu 11.x.  More involved and time-consuming than the one click installers, but also a lot more interesting to setup.  There are detailed articles on Apache, PHP, and MySQL setup.</li>
+</ul>
+
+<h5>Ruby Web Application Frameworks</h5>
+<p>Three of the more popular Ruby web application frameworks including Rails, probably the most popular.</p>
+<ul class="references">
+  <li><a href="http://rubyonrails.org/">Ruby on Rails</a>.  Retrieved December 2011.</li>
+  <li><a href="http://www.merbivore.com/">Merb</a>.  Retrieved December 2011.</li>
+  <li><a href="http://www.sinatrarb.com">Sinatra</a>.  Retrieved December 2011.</li>
+</ul>
+
+<h5>PHP Web Application Frameworks</h5>
+<p>These are just a few of the more popular PHP frameworks - see the first reference from Coetzee for hints on what to consider when comparing frameworks.
+<ul class="references">
+  <li>Coetzee, Christof. <a href="http://www.christofcoetzee.co.za/zend-framework-vs-codeigniter-vs-cakephp-vs-others">Zend Framework vs Codeigniter vs CakePHP vs others</a>.  Retrieved December 2011.</li>
+  <li><a href="http://www.cakephp.org">CakePHP</a>.  Retrieved December 2011.</li>
+  <li><a href="http://www.codeigniter.com">CodeIgniter</a>.  Retrieved December 2011.</li>
+  <li><a href="http://www.zend.com">Zend</a>.  Retrieved December 2011.</li>
+</ul>
+
+          </div>
+        </section> 
+      </div>
+      <footer>
+        <div class="footer-inner">
+          <p>&copy; 2011 HellaRobots</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
