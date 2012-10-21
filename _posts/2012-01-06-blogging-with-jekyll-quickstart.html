@@ -20,7 +20,7 @@ ruby 1.9.3p0 (2011-10-30 revision 33570) [i686-linux]</code></pre>
 
 <h3>What's the Deal With Jekyll?</h3>
 <p>Jekyll is a Ruby static site generator; it's code that takes input data like what layout you want to use, what page title to use, and the actual page content you're trying to publish, and it generates an HTML page.  In particular, Jekyll is useful for writing blog posts.  Once you establish the structure of your posts (i.e. the layout), you can concentrate on just writing the actual content of your post.  What you're left with is just static content that you can post on any webserver without having to worry about things like setting up a database to store your posts, because your posts are just files.</p>
-<p>This approach isn't for everyone of course, but it's definitely worth giving a try.  Jekyll was create by <a href="http://tom.preston-werner.com">Tom Preston-Werner</a> of GitHub fame, and it is also used by GitHub for <a href="http://pages.github.com/">GitHub Pages</a>.  GitHub Pages can be used for both a blog and project pages on GitHub, and we'll be using it publish a blog to the web using git and GitHub.  This setup allows you to quickly and easily setup and publish a blog or website.</p>
+<p>This approach isn't for everyone of course, but it's definitely worth giving a try.  Jekyll was create by <a href="http://tom.preston-werner.com">Tom Preston-Werner</a> of GitHub fame, and it is also used by GitHub for <a href="http://pages.github.com/">GitHub Pages</a>.  GitHub Pages can be used for both a blog and project pages on GitHub, and we'll be using it to publish a blog to the web using git and GitHub.  This setup allows you to quickly and easily setup and publish a blog or website.</p>
 
 <h3>Installation and Setup</h3>
 <p>Installing Jekyll is pretty simple:</p>
@@ -51,9 +51,9 @@ ruby 1.9.3p0 (2011-10-30 revision 33570) [i686-linux]</code></pre>
 <ul>
   <li><strong>_config.yml:</strong> YAML formatted configuration file that can hold information like how many posts to display per page or what base URL to serve your site from.  You can start with an empty file, and Jekyll will just use default settings.</li>
   <li><strong>_includes/:</strong> Put any partials (reusable bits of code) here so you can use them in your layouts and posts.  You can start with nothing in this directory, and as you create more and more posts or if you decide to have multiple layouts, you'll find that you can extract common code into partials.</li>
-  <li><strong>_layouts/:</strong> Put the templates for your posts and any other content you want to publish.  You can specify what layout to use for individual posts/files.  In your posts, you use the tag <code>&#123;&#123; content &#125;&#125;</code> to insert the post content into a layout.</li>
+  <li><strong>_layouts/:</strong> Put your templates here.  These are useful for wrapping common elements around your posts and any other content you want to publish.  You can specify what layout to use for individual posts/files.  In your layouts, you use the tag <code>&#123;&#123; content &#125;&#125;</code> to indicate where post or file contents will be inserted.</li>
   <li><strong>_posts/:</strong> Put your blog posts into this directory.  Again, these are just HTML, Markdown or Textile files, and they are just the content part of the post.  The file names should be of the format <code>year-month-day-title.markupextension</code>.  So if you created a blog post in HTML called "Hello World" published on January 1, 2012, you would name the file <q>2012-01-01-hello-world.html</q>.</li>
-  <li><strong>_site/:</strong> Jekyll puts it output in this directory.  The content in this directory is your site in HTML format.</li>
+  <li><strong>_site/:</strong> Jekyll puts its output in this directory.  The content in this directory is your site in HTML format.</li>
   <li><strong>index.html:</strong> The root page of your blog.</li>
 </ul>
 
@@ -83,7 +83,7 @@ robert@ubuntu:~/projects/jekyll-quickstart$ mkdir {_layouts,_posts,_site}
 
 <pre><code>robert@ubuntu:~/projects/jekyll-quickstart$ touch _config.yml</code></pre>
 
-<p>Since it's empty, Jekyll will just use default settings, but it's good to have it when we're starting out since we'll be checking it in with git.  As you continue working with Jekyll, if you have the need to set configuration options in you <code>_config.yml</code> file.  See the <a href="https://github.com/mojombo/jekyll/wiki/configuration">Configuration</a> page on the Jekyll project page for more information.</p>
+<p>Since it's empty, Jekyll will just use default settings, but it's good to have it when we're starting out since we'll be checking it in with git.  As you continue working with Jekyll, if you have the need to set configuration options in your <code>_config.yml</code> file.  See the <a href="https://github.com/mojombo/jekyll/wiki/configuration">Configuration</a> page on the Jekyll project page for more information.</p>
 
 <p>Now that we have the minimal layout done, we can create our two layouts; one for the blog post index, and one for our blog posts.  Since we're mainly interested in Jekyll, we'll keep things simple.  Our index layout looks like this:</p>
 
@@ -147,7 +147,7 @@ title: Hello World Blog
 &#123;% endfor %&#125;
 &lt;/ul&gt;</code></pre>
 
-<p>You can probably guess that this code just loops through all our sites posts, and we're going to populate an unordered list with information from each of our blog posts (everything in our <code>_posts</code> directory).  We'll fill in the loop with each post date and title:</p>
+<p>You can probably guess that this code just loops through all our site's posts, and we're going to populate an unordered list with information from each of our blog posts (everything in our <code>_posts</code> directory).  We'll fill in the loop with each post date and title:</p>
 
 <pre><code>&lt;span class="post-date"&gt;&#123;&#123; post.date | date_to_string &#125;&#125;&lt;/span&gt; &lt;a href="&#123;&#123; post.url &#125;&#125;"&gt;&#123;&#123; post.title &#125;&#125;&lt;/a&gt;</code></pre>
 
@@ -227,7 +227,7 @@ Successfully generated site: /home/robert/projects/jekyll-quickstart -> /home/ro
 
 <p>Notice the link back to the blog home page, so we know that our <code>_layouts/post.html</code> layout is being used.</p>
 
-<p>To verify that our index page will actually loop through all our posts, you can create a couple of more posts.  I created one title "Hello Again" and another called "Bye For Now".  Run <code>jekyll</code> again so that the new posts are processed, start the server with <code>jekyll --server</code> (if it's not still running; if you start the server in another terminal, you can leave it running, and any changes you make will be visible when you refresh the page), and you should see your new posts listed on the index page:</p>
+<p>To verify that our index page will actually loop through all our posts, you can create a couple more posts.  I created one titled "Hello Again" and another called "Bye For Now".  Run <code>jekyll</code> again so that the new posts are processed, start the server with <code>jekyll --server</code> (if it's not still running; if you start the server in another terminal, you can leave it running, and any changes you make will be visible when you refresh the page), and you should see your new posts listed on the index page:</p>
 
 <div class="figure">
   <img src="/assets/images/2012/01/updated-blog-index.png" />
@@ -237,7 +237,7 @@ Successfully generated site: /home/robert/projects/jekyll-quickstart -> /home/ro
 <p>The last thing you'll want to do is publish your blog.  You can use some free webhost, or maybe you already have a hosting service, and you could deploy your <code>_site</code> directory there.  Or you can go the easy route and just use GitHub to publish your blog.</p>
 
 <h3>Deploying on GitHub</h3>
-<p>If you're a GitHub user and you want to get your blog up quickly, GitHub makes it pretty easy for you.  If you don't have one yet, just give in and <a href="https://github.com/signup/free">create an account</a> like everyone else (just kidding, there's are other good options for your source control needs like <a href="https://bitbucket.org/">bitbucket</a>).  The only other requirement is that you have git installed and you're at least familiar with basic git usage.  We won't cover that that here as there's quite a few good <a href="http://help.github.com/">resources</a> on using git.</p>
+<p>If you're a GitHub user and you want to get your blog up quickly, GitHub makes it pretty easy for you.  If you don't have one yet, just give in and <a href="https://github.com/signup/free">create an account</a> like everyone else (just kidding, there are other good options for your source control needs like <a href="https://bitbucket.org/">bitbucket</a>).  The only other requirement is that you have git installed and you're at least familiar with basic git usage.  We won't cover that that here as there are quite a few good <a href="http://help.github.com/">resources</a> on using git.</p>
 
 <p>The one thing you need to note from your account is your username.  Then all you need to do is create a repository called <code>username.github.com</code>, where <code>username</code> is your GitHub username.  Then in the root directory of your Jekyll site, <code>init</code> a repository:</p>
 
