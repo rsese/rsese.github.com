@@ -127,7 +127,7 @@ section {
 
 #main h2 {
   font-size: 1.75em;
-  margin-bottom: 0.2em;
+  margin-bottom: 0.5em;
 }
 
 #main h3,
@@ -140,8 +140,13 @@ section {
   font-style: italic;
 }
 
-#main ul {
+#main ul.naked {
   list-style-type: none;
+  margin: 0;
+}
+
+#main ul {
+  margin-left: 15px;
 }
 
 #main ul li {
@@ -152,9 +157,10 @@ section {
   font-size: 1.25em;
 }
 
-.projects,
-.posts {
+#main .projects,
+#main .posts {
   list-style-type: none;
+  margin-left: 0;
 }
 
 .projects li,
@@ -274,9 +280,10 @@ footer p {
   margin-bottom: .8em;
 }
 
-.references {
+#main .references {
   list-style-type: none;
   margin-bottom: 1.5em;
+  margin-left: 0;
 }
 
 .references li {
