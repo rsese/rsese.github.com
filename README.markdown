@@ -1,10 +1,8 @@
-# Jekyll Quickstart
+# rsese.github.com
 
-## Description
+Thanks [Jekyll](https://github.com/mojombo/jekyll) - this is the source for my site. 
 
-Starter code for getting up and running with Jekyll.  Gives an example of the layout and files you'll need to start writing and publish a blog using git and GitHub. 
-
-## References and Further Reading
+# RTFM and Further Reading
 
 Jekyll's project home page:
 
