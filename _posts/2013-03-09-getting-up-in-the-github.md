@@ -5,7 +5,7 @@ layout: post
 
 ## {{ page.title }}
 
-{{ page.date | date: "%B %d, %Y" }}
+**{{ page.date | date: "%B %d, %Y" }}**
 
 *How do I upload a project on my computer to GitHub?*
 
@@ -16,14 +16,14 @@ bit troublesome at first. And while the [GitHub](https://www.github.com)
 helpful, sometimes people ask for a simple walkthrough for moving some project
 or website they have on their computer to a repository on GitHub. 
 
-If you are one of these "people", then hopefully this quick article will help
+If you are one of these "people", then hopefully this short article will help
 you get all up in GitHub. The process is pretty straightforward, and after you
 do it once, the next time will be easy. Before we start, we'll just assume
 you've setup a 
 [command line git client](https://help.github.com/articles/set-up-git) and that
 you've already [signed up](https://github.com/) for a GitHub account.
 
-## Pushing That Project to GitHub
+### Pushing That Project to GitHub
 
 So let's say we have a project on our computer, some next level website for
 example:
@@ -106,13 +106,13 @@ Refresh that repository page, and we should see our files now:
 
 And that's it we're done, time for profit.
 
-## The End.
+### The End.
 
 Hopefully this article was easy to follow, and getting projects from your
 computer to a repository on GitHub is super clear. Also, if you happen to be new to git and GitHub and want to do more reading, check out the references
 section below to have knowledge dropped on you.
 
-## RTFM and Other Resources
+### RTFM and Other Resources
 
 * Git Reference. [http://gitref.org/](https://help.github.com/).  
 A reference to the most commonly used git commands.
