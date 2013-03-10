@@ -51,14 +51,12 @@ pre code {
 }
 
 #container {
-  /* bump down global font size. */
-  font-size: .95em;
 }
 
 #content {
   margin: 0 auto;
   padding: 25px 0 0;
-  width: 850px;
+  width: 750px;
 }
 
 p {
@@ -113,7 +111,7 @@ header .logo a:visited {
 .footer-inner,
 .header-inner {
   margin: 0 auto;
-  width: 850px;
+  width: 750px;
 }
 
 section {
@@ -127,7 +125,7 @@ section {
 
 #main h2 {
   font-size: 1.75em;
-  margin-bottom: 0.5em;
+  margin-bottom: 1em;
 }
 
 #main h3,
@@ -150,7 +148,7 @@ section {
 }
 
 #main ul li {
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
 }
 
 #sup-about p {
@@ -213,6 +211,7 @@ footer p {
 .hero img {
   border-bottom: 1px solid #000;
   border-top: 1px solid #000;
+  margin-left: -50px;
 }
 
 .hero .overlay {
@@ -224,35 +223,19 @@ footer p {
   margin-right: -10px;
   padding: 20px 20px 10px 20px;
   position: absolute;
-  right: 0;
-  top: 25px;;
+  right: -50px;
+  top: 40px;
   width: 245px;
+}
+
+#container img {
+  margin-left: -50px;
+  margin-bottom: 1.25em;
+  margin-top: 1.25em;
 }
 
 .figure {
   margin: 1.75em 0;  
-}
-
-.span5 {
-  width: 245px;
-}
-
-.span6 {
-  width: 300px;
-}
-
-.span11 {
-  width: 575px;
-}
-
-.span16 {
-  width: 850px;
-}
-
-.span5, .span6, .span11, .span16 {
-  display: inline;
-  float: left;
-  margin-left: 30px;
 }
 
 .first {
@@ -275,9 +258,11 @@ footer p {
 
 .post-meta {
   color: #999999;
+  float: left;
   font-size: .9em;
   font-weight: normal;
   margin-bottom: .8em;
+  width: 150px;
 }
 
 #main .references {

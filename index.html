@@ -5,26 +5,7 @@ title: Hella Robots
 
 <div id="sup-blog" class="span16 first">
   <h2>Blog Latest</h2>
-  <ul class="posts">
-    <li>
-      <h3><a href="2012/11/23/debugging-on-appfog.html">Debugging on AppFog</a></h3>
-      <div class="post-meta">November 24, 2012</div>
-        <p>A big plus when deploying to a platform as a service (<a href="http://en.wikipedia.org/wiki/Platform_as_a_service">PaaS</a>) is that you're pushing the responsibility for a lot of the systems administration tasks to the PaaS provider, which ideally leaves you to concentrate on writing your application.  As a result however, on services like <a href="http://www.appfog.com">AppFog</a> or <a href="http://www.heroku.com">Heroku</a>, you no longer have direct access to the environment your application is running on.  So you can't SSH into a box and grep through logs, which some people are used to in their debugging workflow.  </p>
-      <p><a href="2012/11/23/debugging-on-appfog.html">Read more...</a></p>
-    </li>
-    <li>
-      <h3><a href="2012/01/06/blogging-with-jekyll-quickstart.html">Blogging With Jekyll Quickstart</a></h3>
-      <div class="post-meta">January 6, 2012</div>
-        <p>If you want to blog these days, you have a number of choices.  You can use a free hosted service like <a href="http://www.blogger.com">Google's Blogger</a> or the ever-hip <a href="http://www.tumblr.com">Tumblr</a>, or you can host your own blog using something like <a href="http://www.wordpress.org">Wordpress</a>.  Or, if you want a simple setup with no databases or WYSIWIG editors, you can go the static site generator route using <a href="https://github.com/mojombo/jekyll">Jekyll</a>.</p>
-      <p><a href="2012/01/06/blogging-with-jekyll-quickstart.html">Read more...</a></p>
-    </li>
-    <li>
-      <h3><a href="2011/12/20/up-and-running-on-phpfog-with-codeigniter.html">Up and Running on PHPFog with CodeIgniter</a></h3>
-      <div class="post-meta">December 20, 2011</div>
-      <p>If you're a web developer, chances are you've heard of or used Ruby on Rails to develop a web application. As a Ruby programmer, there are other options like Sinatra, but Rails is the dominant Ruby framework today (by at least one measure). PHP on the other hand has a number of MVC frameworks that you can experiment with. CakePHP, Zend, and CodeIgniter are just a few that come to mind; FuelPHP is a bit younger, but looks pretty interesting too.</p>
-      <p><a href="2011/12/20/up-and-running-on-phpfog-with-codeigniter.html">Read more...</a></p>
-    </li>
-  </ul>
+  {% include posts.html %}
 </div>
 <div id="sup-about" class="span16 first">
   <h2 id="about">About</h2>
