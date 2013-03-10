@@ -138,13 +138,9 @@ section {
   font-style: italic;
 }
 
-#main ul.naked {
-  list-style-type: none;
-  margin: 0;
-}
-
 #main ul {
-  margin-left: 15px;
+  list-style-type: none;
+  margin-left: 0;
 }
 
 #main ul li {
