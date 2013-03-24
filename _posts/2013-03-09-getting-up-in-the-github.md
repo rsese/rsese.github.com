@@ -13,8 +13,9 @@ Seems like an easy question, but if you've never done it before, it might be a
 bit troublesome at first. And while the [GitHub](https://www.github.com)
 [Help Documentation](https://help.github.com/) is tight, and the
 [Bootcamp](https://help.github.com/categories/54/articles) articles are super
-helpful, sometimes people ask for a simple walkthrough for moving some project
-or website they have on their computer to a repository on GitHub. 
+helpful, sometimes people just want a simple walkthrough that explains how to
+move a project or website they have on their computer to a repository on
+GitHub. 
 
 If you are one of these "people", then hopefully this short article will help
 you get all up in GitHub. The process is pretty straightforward, and after you
@@ -80,9 +81,8 @@ second):
 
 ![](http://f.cl.ly/items/180e471f3Z0e193N0C34/new-repository-created.png)
 
-Now that we know the URLs, we can choose one to add a
-[remote](http://gitref.org/remotes/#remote) that points to our GitHub
-repository. We'll use the SSH URL in this case (you'll need to have
+Now that we know the repository URLs, we can choose one to add a remote that
+points to our GitHub repository. We'll use the SSH URL in this example (you'll need to have
 [setup your SSH Keys](https://help.github.com/articles/generating-ssh-keys) to
 use this URL):
 
@@ -104,7 +104,7 @@ Refresh that repository page, and we should see our files now:
 
 ![](http://f.cl.ly/items/1B0l1A3w290g2U0P3O1k/files-uploaded-pushed.png)
 
-And that's it we're done, time for profit.
+And that's it, we're done, time for profit.
 
 ### The End.
 
