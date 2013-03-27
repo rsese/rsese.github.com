@@ -3,10 +3,6 @@ layout: post
 title: Debugging on AppFog
 ---
 
-## {{ page.title }}
-
-### What's Up?
-
 A big plus when deploying to a platform as a service (<a href="http://en.wikipedia.org/wiki/Platform_as_a_service">PaaS</a>) is that you're pushing the responsibility for a lot of the systems administration tasks to the PaaS provider, which ideally leaves you to concentrate on writing your application.  As a result however, on services like <a href="http://www.appfog.com">AppFog</a> or <a href="http://www.heroku.com">Heroku</a>, you no longer have direct access to the environment your application is running on.  So you can't SSH into a box and grep through logs, which some people are used to in their debugging workflow.
 
 But AppFog and these other PaaS providers of course provide you with resources to help you debug applications without SSH access to a server.  And probably the two big places where you'll end up needing to debug problems on AppFog are application deployment and runtime errors.

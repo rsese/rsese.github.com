@@ -61,7 +61,7 @@ pre code {
 }
 
 p {
-  margin-bottom: 1.3em;
+  margin: 1em 0 1.3em 0;
 }
 
 header {
@@ -260,6 +260,16 @@ footer p {
   font-weight: normal;
   margin-bottom: .8em;
   width: 150px;
+}
+
+#main .post-title {
+  margin-bottom: .2em;
+}
+
+.post-date {
+  color: #999999;
+  display: block;
+  margin: 0 0 1.5em 0;
 }
 
 #main .references {

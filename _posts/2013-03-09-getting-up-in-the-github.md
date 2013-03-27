@@ -3,10 +3,6 @@ title: Getting Up in the GitHub
 layout: post
 ---
 
-## {{ page.title }}
-
-**{{ page.date | date: "%B %d, %Y" }}**
-
 *How do I upload a project on my computer to GitHub?*
 
 Seems like an easy question, but if you've never done it before, it might be a

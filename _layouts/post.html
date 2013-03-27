@@ -12,6 +12,8 @@
       <div id="content">
         <section id="main" class="group">
           <div class="span16 first">
+            <h2 class="post-title">{{ page.title }}</h2>
+            <span class="post-date">{{ page.date | date: "%B %d, %Y" }}</span>
             {{ content }}
           </div>
         </section> 
