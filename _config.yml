@@ -1,3 +1,6 @@
-markdown: rdiscount
-pygments: true
-
+title:            "Hella Robots"
+url:              http://hellarobots.com
+permalink:        pretty
+highlighter:      pygments
+markdown:         kramdown
+google_analytics: UA-25803931-1
