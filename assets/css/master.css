@@ -2,6 +2,30 @@
  * Hella Robots master stylesheet
  */
 
+@font-face {
+    font-family: 'Roboto';
+    src: url('robotoslab_regular_macroman/RobotoSlab-Regular-webfont.eot');
+    src: url('robotoslab_regular_macroman/RobotoSlab-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('robotoslab_regular_macroman/RobotoSlab-Regular-webfont.woff') format('woff'),
+         url('robotoslab_regular_macroman/RobotoSlab-Regular-webfont.ttf') format('truetype'),
+         url('robotoslab_regular_macroman/RobotoSlab-Regular-webfont.svg#roboto_slabbregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Roboto Bold';
+    src: url('robotoslab_bold_macroman/RobotoSlab-Bold-webfont.eot');
+    src: url('robotoslab_bold_macroman/RobotoSlab-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('robotoslab_bold_macroman/RobotoSlab-Bold-webfont.woff') format('woff'),
+         url('robotoslab_bold_macroman/RobotoSlab-Bold-webfont.ttf') format('truetype'),
+         url('robotoslab_bold_macroman/RobotoSlab-Bold-webfont.svg#roboto_slabbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 /* [TODO]: mini-reset. replace with a real reset. */
 h1, h2, h3, h4, h5, div, p, ul, li, section, aside {
   margin: 0;
@@ -11,7 +35,7 @@ h1, h2, h3, h4, h5, div, p, ul, li, section, aside {
 body {
   color: rgba(0,0,0, 0.75);
   font-size: 100%;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1;
   margin: 0;
   padding: 0;
@@ -72,6 +96,7 @@ header {
 
 header .logo {
   float: left;
+  font-family: "Roboto Bold";
   font-size: 2em;
   margin: 0;
   text-transform: uppercase;
@@ -125,6 +150,7 @@ section {
 }
 
 #main h2 {
+  font-family: "Roboto Bold";
   font-size: 1.75em;
   margin-bottom: 1em;
 }
@@ -140,8 +166,8 @@ section {
 }
 
 #main ul {
-  list-style-type: none;
-  margin-left: 0;
+  list-style-type: square;
+  margin-left: 32px;
 }
 
 #main ul li {
