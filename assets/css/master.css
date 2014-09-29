@@ -61,7 +61,8 @@ em {
 
 code {
   background-color: #EEEEEE;
-  border: 1px solid #AAAAAA;
+  border-bottom: 1px solid #AAAAAA;
+  border-top: 1px solid #AAAAAA;
 }
 
 pre {
@@ -75,7 +76,19 @@ pre code {
   padding: 15px;
 }
 
-#container {
+blockquote {
+  border-left: 8px solid #EEEEEE;
+  margin: 2em 1.5em;
+  padding: 15px;
+}
+
+blockquote:before {
+  color: #EEEEEE;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
 }
 
 #content {
