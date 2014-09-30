@@ -59,6 +59,13 @@ em {
   font-style: italic;
 }
 
+strong {
+  background-color: #000000;
+  color: #FFFFFF;
+  font-weight: bold;
+  padding: 0 2px;
+}
+
 code {
   background-color: #EEEEEE;
   border-bottom: 1px solid #AAAAAA;
@@ -89,6 +96,12 @@ blockquote:before {
   line-height: 0.1em;
   margin-right: 0.25em;
   vertical-align: -0.4em;
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px dashed #CCCCCC;
+  margin: 2em 1.5em;
 }
 
 #content {
@@ -168,13 +181,22 @@ section {
   margin-bottom: 1em;
 }
 
-#main h3,
+#main h3 {
+  font-family: "Roboto Bold";
+  font-size: 1.45em;
+  margin-bottom: 0.75em;
+}
+
 #main h4 {
+  font-family: "Roboto Bold";
+  font-size: 1.25em;
   margin-bottom: 0.75em;
 }
 
 #main h5 {
   margin-bottom: 0.5em;
+  font-family: "Roboto Bold";
+  font-size: 1.15em;
   font-style: italic;
 }
 
