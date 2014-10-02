@@ -1,6 +1,7 @@
-title:            "Hella Robots"
-url:              http://hellarobots.com
+title:            Hella Robots
+url:              http://www.hellarobots.com
 permalink:        pretty
 highlighter:      pygments
 markdown:         kramdown
 google_analytics: UA-25803931-1
+timezone:         America/Chicago
