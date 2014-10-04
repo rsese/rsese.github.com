@@ -308,6 +308,11 @@ footer p {
 /* miscellaneous
 ----------------------------------------*/
 
+#container .emoji {
+  display: inline;
+  margin: 0;
+}
+
 .hero .cite {
   border-top: 1px dashed #ccc;
   font-size: 0.85em;

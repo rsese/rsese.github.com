@@ -5,3 +5,5 @@ highlighter:      pygments
 markdown:         kramdown
 google_analytics: UA-25803931-1
 timezone:         America/Chicago
+gems:
+  - jemoji
