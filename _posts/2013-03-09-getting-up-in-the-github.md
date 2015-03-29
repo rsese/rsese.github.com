@@ -110,7 +110,7 @@ section below to have knowledge dropped on you.
 
 ### RTFM and Other Resources
 
-* Git Reference. [http://gitref.org/](httpshttp://gitref.org/).  
+* Git Reference. [http://gitref.org/](http://gitref.org/).  
 A reference to the most commonly used git commands.
 * Pro Git. [http://git-scm.com/book](https://git-scm.com/book).  
 A great reference overall, but
