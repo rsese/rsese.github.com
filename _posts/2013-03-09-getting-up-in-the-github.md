@@ -114,9 +114,9 @@ section below to have knowledge dropped on you.
 A reference to the most commonly used git commands.
 * Pro Git. [http://git-scm.com/book](https://git-scm.com/book).  
 A great reference overall, but
-[chapter 1]([http://git-scm.com/book/en/Getting-Started](http://git-scm.com/book/en/Getting-Started)
+[chapter 1](http://git-scm.com/book/en/Getting-Started)
 and
-[chapter 2]([http://git-scm.com/book/en/Git-Basics](http://git-scm.com/book/en/Git-Basics)
+[chapter 2](http://git-scm.com/book/en/Git-Basics)
 specifically are good beginning material.
 * github:help. [https://help.github.com](https://help.github.com/).  
 GitHub's official help articles. Covers most of the the tasks you'll need to
